@@ -21,14 +21,15 @@ This package provides an implementation of a dynamics prediction from a cryo-EM 
 - *[htmd](https://software.acellera.com/academic-download-htmd.html)*: 1.15.2
 - *[EMAN2](https://blake.bcm.edu/emanwiki/EMAN2)*: 2.3
 - Pymol (optional):
+- [UCSF Chimera](https://www.cgl.ucsf.edu/chimera/) (optional):
 
 ## Setup
 Please refer to the following [link](doc/setup.md)
 
 ## Example usage
 
-### Usage 1: Dynamics Prediciton
-DEFMap only uses a cryo-EM map file for dynamics prediction.
+### Usage 1: Dynamics Prediciton and Voxel Visualization
+DEFMap only uses a cryo-EM map file for dynamics prediction and voxel visualization.
 
 - **Scale voxel length and map resolution**
 
@@ -54,8 +55,23 @@ python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model.h5 --pr
 
 The joblib output file contains python dictionary object (key: voxel coordinate, value: logarithm of RMSF).
 
-### Usage 2: Dynamics Prediction and Visualization
-For dynamics visualization, DEFMap needs a PDB file corresponding to the cryo-EM map used for inference. 
+- **Visualization**  
+Decide a threshold of the map intensity using like [UCSF Chimera](https://www.cgl.ucsf.edu/chimera/).
+Then, voxels with the intensity above the threshold will be selected for visualization.  
+In this example, 0.0252 is used as the threshold.
+
+First, run the following command.
+```bash
+python postprocessing/rmsf_map2grid.py -m ./data/015_emd_3984_5.0A_rescaled.mrc -p result/prediction.jbl -t 0.0252
+```
+Then, launch your GUI viewer that can visualize PDB file (in this tutorial, we use PyMol) and open 015_emd_3984_5.0A_rescaled.pdb.
+Finally, run the following command (`show_as nb_spheres; spectrum b, slate_orange_red, minimum=-1, maximum=2`) in PyMOL command line, and you can see the following picture.
+
+<div align="center">
+  <img src="img/dynamics_voxels.jpg">
+</div>
+### Usage 2: Dynamics Prediction and The Mapping onto Atomic Model
+For atomic-level dynamics visualization, DEFMap needs a PDB file corresponding to the cryo-EM map used for inference. 
 
 - **Scale voxel length and map resolution**  
 ```bash
