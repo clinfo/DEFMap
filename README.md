@@ -70,6 +70,7 @@ Finally, run the following command (`show_as nb_spheres; spectrum b, slate_orang
 <div align="center">
   <img src="img/dynamics_voxels.jpg">
 </div>
+
 ### Usage 2: Dynamics Prediction and The Mapping onto Atomic Model
 For atomic-level dynamics visualization, DEFMap needs a PDB file corresponding to the cryo-EM map used for inference. 
 
