@@ -89,7 +89,7 @@ python prep_dataset.py -m ../data/015_emd_3984_5.0A_rescaled.mrc -o ../data/samp
 - **Inference**  
 
 ```bash
-# It's going to take a while.
+# It's going to take a while (less than 10 minutes depending on your computer).
 python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model.h5 --prediction_output result/prediction.jbl
 ```
 
