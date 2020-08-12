@@ -23,6 +23,12 @@ This package provides an implementation of a dynamics prediction from a cryo-EM 
 - Pymol (optional):
 - [UCSF Chimera](https://www.cgl.ucsf.edu/chimera/) (optional):
 
+## Hardware requirements
+DEFMap requires no specific high-end computer. For optimal performance, we recommended a computer with the following specs:
+- RAM: 96+GB
+- CPU: 12+ cores, 2.60 GHz.
+- GPU: NVIDIA GeForce GTX1080Ti (or better GPU)
+
 ## Setup
 Please refer to the following [link](doc/setup.md).
 Typical installation time is expected to be less than 30 minutes.
