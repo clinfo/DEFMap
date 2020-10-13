@@ -11,6 +11,8 @@ This package provides an implementation of a dynamics prediction from a cryo-EM 
 ### Environment
 
 - Ubuntu: 16.04 or 18.04 (confirmed)
+- [CUDA Toolkit](https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal) version: 10.0 (any compatibility version is ok)
+- NVIDIA driver version: 410.66 (any compatibility version is ok)
 
 ### Package
 
@@ -57,7 +59,7 @@ python prep_dataset.py -m ../data/015_emd_3984_5.0A_rescaled.mrc -o ../data/samp
 
 ```bash
 # It's going to take a while (less than 10 minutes depending on your computer).
-python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model.h5 --prediction_output result/prediction.jbl
+python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model_res5A.h5 --prediction_output result/prediction.jbl
 ```
 
 The joblib output file contains python dictionary object (key: voxel coordinate, value: logarithm of RMSF).
@@ -96,7 +98,7 @@ python prep_dataset.py -m ../data/015_emd_3984_5.0A_rescaled.mrc -o ../data/samp
 
 ```bash
 # It's going to take a while (less than 10 minutes depending on your computer).
-python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model.h5 --prediction_output result/prediction.jbl
+python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model_res5A.h5 --prediction_output result/prediction.jbl
 ```
 
 - **Visualization**  
@@ -113,6 +115,41 @@ Finally, run the following command (`spectrum b, slate_orange_red, minimum=-1, m
 <div align="center">
   <img src="img/dynamics_mapped_protein.jpg">
 </div>
+
+### Usage 3: Dynamics Prediction Using Models Trained by Different Resolutions
+Here, we shows the dynamics prediction using models trained by datasets low-pass filtered to 6Å and 7Å (the above examples used the dataset low-pass filtered to 5Å).
+
+- **Scale voxel length and map resolution**
+
+```bash
+cd data
+# for 6Å
+e2proc3d.py 015_emd_3984.map 015_emd_3984_6A_rescaled.mrc --clip=160,160,160 --scale=0.9 --process=filter.lowpass.gauss:cutoff_freq=0.17
+# for 7Å
+e2proc3d.py 015_emd_3984.map 015_emd_3984_7A_rescaled.mrc --clip=160,160,160 --scale=0.9 --process=filter.lowpass.gauss:cutoff_freq=0.14
+```
+
+- **Create dataset**  
+
+```bash
+cd ../preprocessing/
+# for 6Å
+python prep_dataset.py -m ../data/015_emd_3984_6A_rescaled.mrc -o ../data/sample_6A.jbl -p
+# for 7Å
+python prep_dataset.py -m ../data/015_emd_3984_7A_rescaled.mrc -o ../data/sample_7A.jbl -p
+```
+
+- **Inference**
+
+```bash
+# It's going to take a while.
+# for 6Å
+python 3dcnn_main.py infer --test_dataset data/sample_6A.jbl -o model/model_res6A.h5 --prediction_output result/prediction_6A.jbl
+# for 7Å
+python 3dcnn_main.py infer --test_dataset data/sample_7A.jbl -o model/model_res7A.h5 --prediction_output result/prediction_7A.jbl
+```
+
+The joblib output file contains python dictionary object (key: voxel coordinate, value: logarithm of RMSF).
 
 ## License
 This package is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
