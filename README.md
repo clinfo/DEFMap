@@ -58,6 +58,7 @@ python prep_dataset.py -m ../data/015_emd_3984_5.0A_rescaled.mrc -o ../data/samp
 - **Inference**
 
 ```bash
+cd ../
 # It's going to take a while (less than 10 minutes depending on your computer).
 python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model_res5A.h5 --prediction_output result/prediction.jbl
 ```
@@ -97,6 +98,7 @@ python prep_dataset.py -m ../data/015_emd_3984_5.0A_rescaled.mrc -o ../data/samp
 - **Inference**  
 
 ```bash
+cd ../
 # It's going to take a while (less than 10 minutes depending on your computer).
 python 3dcnn_main.py infer --test_dataset data/sample.jbl -o model/model_res5A.h5 --prediction_output result/prediction.jbl
 ```
@@ -142,6 +144,7 @@ python prep_dataset.py -m ../data/015_emd_3984_7A_rescaled.mrc -o ../data/sample
 - **Inference**
 
 ```bash
+cd ../
 # It's going to take a while.
 # for 6Å
 python 3dcnn_main.py infer --test_dataset data/sample_6A.jbl -o model/model_res6A.h5 --prediction_output result/prediction_6A.jbl
