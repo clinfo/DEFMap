@@ -59,7 +59,7 @@ conda install keras-gpu=2.2.4 tensorflow-gpu=1.13.1 cudatoolkit=10.0
 ```
 If you encounter errors (e.g. "PackageNotFound"), please try below commands.
 ```
-conda install -c conda-forge -c acellera -c psi4 htmd=1.15.2
+conda install -c acellera -c psi4 -c conda-forge htmd=1.15.2
 conda install -c conda-forge keras-gpu=2.2.4 tensorflow-gpu=1.13.1 cudatoolkit=10.0
 ```
 If the above instruction does not work, please create an issue as "Installation issue".
