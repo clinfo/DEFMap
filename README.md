@@ -163,12 +163,16 @@ Shoichi Ishida: ishida.shouichi.57a@st.kyoto-u.ac.jp (maintainer)
 
 ## Reference
 ```
-@article {Matsumoto2020,
-  author = {Matsumoto, Shigeyuki and Ishida, Shoichi and Araki, Mitsugu and Kato, Takayuki and Terayama, Kei and Okuno, Yasushi},
-  title = {Extraction of Protein Dynamics Information Hidden in Cryo-EM Map Using Deep Learning},
-  year = {2020},
-  doi = {10.1101/2020.02.17.951863},
-  URL = {https://www.biorxiv.org/content/early/2020/02/18/2020.02.17.951863},
-  journal = {bioRxiv}
+@article{Matsumoto2021,
+  doi = {10.1038/s42256-020-00290-y},
+  url = {https://doi.org/10.1038%2Fs42256-020-00290-y},
+  year = 2021,
+  month = {feb},
+  volume = {3},
+  number = {2},
+  pages = {153--160},
+  author = {Shigeyuki Matsumoto and Shoichi Ishida and Mitsugu Araki and Takayuki Kato and Kei Terayama and Yasushi Okuno},
+  title = {Extraction of protein dynamics information from cryo-{EM} maps using deep learning},
+  journal = {Nature Machine Intelligence}
 }
 ```
