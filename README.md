@@ -165,7 +165,7 @@ Shoichi Ishida: ishida.shouichi.57a@st.kyoto-u.ac.jp (maintainer)
 ```
 @article{Matsumoto2021,
   doi = {10.1038/s42256-020-00290-y},
-  url = {https://doi.org/10.1038%2Fs42256-020-00290-y},
+  url = {https://doi.org/10.1038/s42256-020-00290-y},
   year = 2021,
   month = {feb},
   volume = {3},
