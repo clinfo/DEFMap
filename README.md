@@ -159,7 +159,7 @@ This package is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Authors
 Shigeyuki Matsumoto: shigeyuki.matsumoto@riken.jp  
-Shoichi Ishida: ishida.shouichi.57a@st.kyoto-u.ac.jp (maintainer)  
+Shoichi Ishida: ishida.sho.nm@yokohama-cu.ac.jp (maintainer)  
 
 ## Reference
 ```
