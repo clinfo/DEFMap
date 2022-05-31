@@ -49,6 +49,14 @@ def get_parser():
         help="create a dataset for prediction"
     )
     parser.add_argument(
+        '-t', '--threshold', action='store', default=None, type=float,
+        help='threshold to drop sub-voxels with a standardized intensity less than the threshold'
+    )
+    parser.add_argument(
+        '-s', '--save_memory', action='store_true',
+        help='switch numpy.dtype from numpy.float32 to numpy.float16'
+    )
+    parser.add_argument(
         "-m", "--map_file", type=str,
         help="path to a map file."
     )
@@ -87,17 +95,22 @@ def create_dataset_for_prediction(em_arr_norm, info, args):
     hrange = int(args.voxel_range / 2)
     center_list = np.asarray([(x, y, z) for x in range(hrange, info['max_dist'] - hrange + 1)
                               for y in range(hrange, info['max_dist'] - hrange + 1)
-                              for z in range(hrange, info['max_dist'] - hrange + 1)])
+                              for z in range(hrange, info['max_dist'] - hrange + 1)], dtype=np.int16)
+    set_threshold = False if args.threshold is None else True
     for center in center_list:
-        if isnan(em_arr_norm[center[0]][center[1]][center[2]]):
+        label = em_arr_norm[center[0]][center[1]][center[2]][0]
+        if isnan(label):
             continue
+        if set_threshold:
+            if not label > args.threshold:
+                continue
         sub_voxel = em_arr_norm[center[0] - hrange:center[0] + hrange,
                                 center[1] - hrange:center[1] + hrange,
                                 center[2] - hrange:center[2] + hrange]
         center = ','.join(list(map(str, center.tolist())))
         data.append(sub_voxel)
         centers.append(center)
-    return np.array(data, dtype=np.float32), centers
+    return np.array(data), centers
 
 
 def generate_rotate_voxels(voxel, label, center):
@@ -136,9 +149,10 @@ def save_dataset_for_prediction(data, centers, output_filename):
 
 def main():
     args = get_parser()
+    dtype = np.float16 if args.save_memory else np.float32
     if args.prediction:
         em_arr, info = get_em_map(args.map_file)
-        em_arr_norm = standardize_int(em_arr)
+        em_arr_norm = standardize_int(em_arr, dtype=dtype)
         data, centers = create_dataset_for_prediction(em_arr_norm, info, args)
         save_dataset_for_prediction(data, centers, args.output)
         print("[INFO] Done")
@@ -147,12 +161,12 @@ def main():
     data_list, labels_list, centers_list = [], [], []
     for i in tqdm(range(len(pdb_file))):
         em_arr, info = get_em_map(map_file[i])
-        em_arr_norm = standardize_int(em_arr)
+        em_arr_norm = standardize_int(em_arr, dtype=dtype)
         data, labels, centers = create_dataset(em_arr_norm, str(pdb_file[i]), str(rmsf_xvg[i]), info, args, str(gromacs_pdbs[i]))
         data_list.extend(data)
         labels_list.extend(labels)
         centers_list.extend(centers)
-    save_dataset(np.array(data_list, dtype=np.float32), np.array(labels_list, dtype=np.float32), centers_list, args.output)
+    save_dataset(np.array(data_list, dtype=dtype), np.array(labels_list, dtype=dtype), centers_list, args.output)
     print("[INFO] Done")
 
 

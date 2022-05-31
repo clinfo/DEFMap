@@ -58,9 +58,9 @@ def process_2dGMX_xvg(rmsf_xvg):
     return np.asarray(md_resid), np.asarray(rmsf_val)
 
 
-def standardize_int(em_arr):
+def standardize_int(em_arr, dtype=np.float32):
     em_arr_norm = (em_arr - np.mean(em_arr)) / np.std(em_arr)
-    return np.where(em_arr_norm < 0, 0, em_arr_norm)
+    return np.where(em_arr_norm < 0, 0, em_arr_norm).astype(dtype)
 
 
 def load_model_and_dataset(path_to_dataset, path_to_model=None, path_to_trained_model=None, train=True):
