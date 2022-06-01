@@ -33,5 +33,4 @@ def create_model(data):
     model.compile(loss='mean_squared_error',
                   optimizer=Adam(lr=0.00005),
                   metrics=['mae'])
-    print(model.summary())
     return model
