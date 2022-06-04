@@ -6,6 +6,7 @@ This package provides an implementation of a dynamics prediction from a cryo-EM 
   <img src="./img/DEFMap_summary.jpg">
 </div>
 
+Google Colaboratory version of DEFMap is now released. If you want to try it, please visit [ColabDEFMap](https://colab.research.google.com/gist/sishida21/a75503ad30aa6f11f99e7d2af8467727/colabdefmap-ipynb.ipynb#scrollTo=hcZeBpivZOJH).
 ## Dependency
 
 ### Environment
