@@ -36,6 +36,8 @@ DEFMap requires no specific high-end computer. For optimal performance, we recom
 Please refer to the following [link](doc/setup.md).
 Typical installation time is expected to be less than 30 minutes.
 
+If you want to use docker, please refer to the following [link](doc/docker.md).
+
 ## Example usage
 
 ### Usage 1: Dynamics Prediciton and Voxel Visualization
