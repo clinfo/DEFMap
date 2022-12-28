@@ -40,26 +40,17 @@ bash eman2.3.linux64.sh -b
 ### Create DEFMap implementation environment in pyenv
 * Install miniconda3.
 ```bash
-pyenv install miniconda3-4.2.12
+pyenv install miniconda3-latest
 ```
 
 * Create virtual environment using conda
 ```bash
-conda create -n home python=3.6
-pyenv global miniconda3-4.2.12/envs/home
-conda create -n defmap python=3.6
-pyenv shell miniconda3-4.2.12/envs/defmap
+conda create -n defmap python=3.8
+pyenv shell miniconda3-latest/envs/defmap
 ```
 
 * Install the dependency libraries.
 ```
-conda install -c acellera -c psi4 htmd=1.15.2
-conda install keras-gpu=2.2.4 tensorflow-gpu=1.13.1 cudatoolkit=10.0
-# if the version of CUDA Toolkit installed on your server is 9.0, please specify cudatoolkit=9.0
-```
-If you encounter errors (e.g. "PackageNotFound"), please try below commands.
-```
-conda install -c acellera -c psi4 -c conda-forge htmd=1.15.2
-conda install -c conda-forge keras-gpu=2.2.4 tensorflow-gpu=1.13.1 cudatoolkit=10.0
+camba install -c acellera -c conda-forge moleculekit=1.5.6 tensorflow=2.9 cudatoolkit=11.2 matplotlib scikit-learn joblib
 ```
 If the above instruction does not work, please create an issue as "Installation issue".

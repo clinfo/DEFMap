@@ -11,17 +11,15 @@ Google Colaboratory version of DEFMap is now released. If you want to try it, pl
 
 ### Environment
 
-- Ubuntu: 16.04 or 18.04 (confirmed)
-- [CUDA Toolkit](https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal) version: 10.0 (any compatibility version is ok)
-- NVIDIA driver version: 410.66 (any compatibility version is ok)
+- Ubuntu: 20.04 (confirmed)
+- [CUDA Toolkit](https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal) version: 11.2 (any compatibility version is ok)
 
 ### Package
 
 - *language*: English
-- *python*: >3.6
-- *keras-gpu*: 2.2.4
-- tensorflow-gpu: 1.13.1
-- *[htmd](https://software.acellera.com/academic-download-htmd.html)*: 1.15.2
+- *python*: 3.8
+- *tensorflow*: 2.9.1
+- *moleculekit*: 1.5.6
 - *[EMAN2](https://blake.bcm.edu/emanwiki/EMAN2)*: 2.3
 - Pymol (optional):
 - [UCSF Chimera](https://www.cgl.ucsf.edu/chimera/) (optional):

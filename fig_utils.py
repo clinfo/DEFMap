@@ -53,8 +53,8 @@ def correl_pred_plot(correct_vals, pred_vals, save_dir):
 
 
 def create_figures(history, result_dir):
-    train_mae = history.history['mean_absolute_error']
-    val_mae = history.history['val_mean_absolute_error']
+    train_mae = history.history['mae']
+    val_mae = history.history['val_mae']
     train_loss = history.history['loss']
     val_loss = history.history['val_loss']
     make_mae_cost_plot(train_loss, val_loss, train_mae, val_mae, result_dir)

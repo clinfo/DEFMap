@@ -5,11 +5,9 @@ import warnings
 warnings.filterwarnings('ignore', category=FutureWarning)
 
 import joblib
-from keras import backend as K
-from keras.callbacks import CSVLogger, EarlyStopping
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
-tf.logging.set_verbosity(tf.logging.ERROR)
+from tensorflow.keras.callbacks import CSVLogger, EarlyStopping
 
 from fig_utils import correl_pred_plot, create_figures
 from util import load_model_and_dataset
@@ -69,7 +67,7 @@ def infer(args):
         score = model.evaluate(data, labels, verbose=0)
         print(f"Test loss: {score[0]}\n")
         correl_pred_plot(labels, log_val, args.result_dir)
-    K.clear_session()
+    tf.keras.backend.clear_session()
 
 
 def train(args):
@@ -102,7 +100,7 @@ def train(args):
     print(f"[INFO] Save: {trained_model_path}")
     model.save(str(trained_model_path))
     create_figures(history, args.result_dir)
-    K.clear_session()
+    tf.keras.backend.clear_session()
 
 
 def main():

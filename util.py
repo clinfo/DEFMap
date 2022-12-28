@@ -6,7 +6,7 @@ import warnings
 warnings.filterwarnings('ignore', category=FutureWarning)
 
 import joblib
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 import numpy as np
 from moleculekit.molecule import Molecule
 

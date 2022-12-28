@@ -1,7 +1,7 @@
-from keras import Sequential
-from keras.layers import BatchNormalization, Conv3D, Activation, LeakyReLU, MaxPooling3D, Dropout, Flatten, Dense
-from keras.losses import mean_squared_error
-from keras.optimizers import Adam
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import BatchNormalization, Conv3D, Activation, LeakyReLU, MaxPooling3D, Dropout, Flatten, Dense
+from tensorflow.keras.losses import mean_squared_error
+from tensorflow.keras.optimizers import Adam
 
 
 def create_model(data):
@@ -31,6 +31,6 @@ def create_model(data):
     model.add(Dense(1, name="dense_7"))
 
     model.compile(loss='mean_squared_error',
-                  optimizer=Adam(lr=0.00005),
+                  optimizer=Adam(learning_rate=0.00005),
                   metrics=['mae'])
     return model
